@@ -1,7 +1,10 @@
+import Layout from '@/components/Layout'
+
+
 export default function index() {
     return (
-        <div>
-            <h1>Courses page</h1>
-        </div>
+        <Layout>
+            <h1>All Courses</h1>
+        </Layout>
     )
 }
