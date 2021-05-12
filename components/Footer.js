@@ -4,7 +4,7 @@ import styles from '@/styles/Footer.module.css'
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <p>Copyright &copy; Pro Dev 2021</p>
+      <p>Copyright &copy; Dev Courses 2021</p>
       <p>
         <Link href='/about'>About This Project</Link>
       </p>

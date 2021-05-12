@@ -6,7 +6,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link href='/'>
-          <a>Pro Dev</a>
+          <a>Dev Courses</a>
         </Link>
       </div>
 
