@@ -3,6 +3,7 @@ import Layout from '@/components/Layout'
 import CourseItem from '@/components/CourseItem'
 import { API_URL } from '@/config/index'
 
+
 export default function HomePage({ courses }) {
   return (
     <Layout>
@@ -23,7 +24,7 @@ export default function HomePage({ courses }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/api/courses`)
+  const res = await fetch(`${API_URL}/courses`)
   const courses = await res.json()
 
   return {

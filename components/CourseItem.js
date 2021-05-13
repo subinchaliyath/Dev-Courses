@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '@/styles/CourseItem.module.css'
+import {dateFormatLong} from '@/utils/dateFormat.js'
 
 export default function CourseItem({ cours }) {
   return (
     <div className={styles.course}>
       <div className={styles.img}>
         <Image
-          src={cours.image ? cours.image : '/images/event-default.png'}
+          src={cours.image ? cours.image.formats.thumbnail.url : '/images/event-default.png'}
           width={170}
           height={100}
         />
@@ -15,7 +16,7 @@ export default function CourseItem({ cours }) {
 
       <div className={styles.info}>
         <span>
-          {cours.date} at {cours.time}
+          {dateFormatLong(cours.date)} at {cours.time}
         </span>
         <h3>{cours.name}</h3>
       </div>
