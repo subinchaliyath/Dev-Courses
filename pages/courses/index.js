@@ -16,7 +16,7 @@ export default function CoursePage({ courses }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/api/courses`)
+  const res = await fetch(`${API_URL}/courses?_sort=date:ASC&_limit=3`)
   const courses = await res.json()
 
   return {

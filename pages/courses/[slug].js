@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Layout from '@/components/Layout'
 import { API_URL } from '@/config/index'
 import styles from '@/styles/Course.module.css'
+import {dateFormatLong} from '@/utils/dateFormat.js'
 
 export default function CoursePage({ cours }) {
   const deleteCourse = (e) => {
@@ -24,18 +25,18 @@ export default function CoursePage({ cours }) {
           </a>
         </div>
 
-        <span>
-          {cours.date} at {cours.time}
+        <span> 
+          {dateFormatLong(cours.date)} at {cours.time}
         </span>
         <h1>{cours.name}</h1>
         {cours.image && (
           <div className={styles.image}>
-            <Image src={cours.image} width={960} height={600} />
+            <Image src={cours.image.url} width={960} height={600} />
           </div>
         )}
 
         <h3>Educator:</h3>
-        <p>{cours.performers}</p>
+        <p>{cours.educator}</p>
         <h3>Description:</h3>
         <p>{cours.description}</p>
 
@@ -48,7 +49,7 @@ export default function CoursePage({ cours }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${API_URL}/api/courses`)
+  const res = await fetch(`${API_URL}/courses`)
   const courses = await res.json()
 
   const paths = courses.map((cours) => ({
@@ -62,7 +63,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const res = await fetch(`${API_URL}/api/courses/${slug}`)
+  const res = await fetch(`${API_URL}/courses/?slug=${slug}`)
   const courses = await res.json()
 
   return {
