@@ -1,8 +1,7 @@
-import Link from 'next/link'
-import Layout from '@/components/Layout'
-import CourseItem from '@/components/CourseItem'
-import { API_URL } from '@/config/index'
-
+import Link from "next/link";
+import Layout from "@/components/Layout";
+import CourseItem from "@/components/CourseItem";
+import { API_URL } from "@/config/index";
 
 export default function HomePage({ courses }) {
   return (
@@ -15,20 +14,20 @@ export default function HomePage({ courses }) {
       ))}
 
       {courses.length > 0 && (
-        <Link href='/courses'>
-          <a className='btn-secondary'>View All courses</a>
+        <Link href="/courses">
+          <a className="btn-secondary">View All courses</a>
         </Link>
       )}
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${API_URL}/courses`)
-  const courses = await res.json()
+  const res = await fetch(`${API_URL}/courses?_sort=date:ASC&_limit=3`);
+  const courses = await res.json();
 
   return {
-    props: { courses: courses.slice(0, 3) },
+    props: { courses },
     revalidate: 1,
-  }
+  };
 }
